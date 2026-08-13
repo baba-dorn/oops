@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gemeinsame Gesprächsfragen und Timer für das OOPS Member-Speeddating.">
+  <meta name="theme-color" content="#120b09">
+  <title>[OOPS] Speeddating-Frage</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="fragen.css">
+  <script src="fragen.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="hero question-page" id="question-page" aria-labelledby="page-title">
+      <div class="eyebrow">OOPS Kennenlern-Event · Member-Speeddating</div>
+      <h1 id="page-title">Eure Frage</h1>
+
+      <div class="before-question">
+        <p class="intro">
+          Diese Ansicht ist für die Moderation. Wähle die gemeinsame Frage,
+          starte den Timer und teile anschließend den Teilnehmer-Link im Discord-Hauptchannel.
+        </p>
+
+        <div class="role-note" role="note">
+          <strong>Moderationsansicht</strong>
+          <span>Nur du wählst Fragen und steuerst den Timer.</span>
+        </div>
+
+        <div class="category-panel" aria-labelledby="category-title">
+          <h2 id="category-title">Kategorie wählen</h2>
+          <div class="category-buttons" id="category-buttons"></div>
+        </div>
+
+        <div class="event-info compact-info">
+          <h2>Eine Runde in drei Schritten</h2>
+          <p>Frage wählen → Timer starten → Teilnehmer-Link in den Hauptchannel kopieren.</p>
+          <p class="note">
+            Nach Ablauf wechseln nur die zweiten Gesprächspartner einen Voice-Channel nach unten.
+            Die unterste Person springt nach ganz oben.
+          </p>
+        </div>
+
+        <div class="actions back-link">
+          <a class="button primary" href="fragen-help.html">Methode kurz erklärt</a>
+          <a class="button secondary" href="index.html">Zurück zum Event</a>
+          <a class="button secondary" href="https://discord.gg/EwYqEqCdZz" target="_blank" rel="noopener noreferrer">Zum OOPS-Discord</a>
+        </div>
+      </div>
+
+      <section class="participant-waiting" id="participant-waiting" hidden aria-live="polite">
+        <p class="question-label">Member-Speeddating</p>
+        <h2>Wartet auf die nächste Frage</h2>
+        <p id="participant-waiting-text">
+          Die Moderation veröffentlicht den Link zur gemeinsamen Frage im Discord-Hauptchannel.
+        </p>
+        <a class="button secondary" href="fragen-help.html">Wie funktioniert der Wechsel?</a>
+      </section>
+
+      <section class="question-result" aria-live="polite" hidden>
+        <article class="question-card">
+          <p class="question-label">Gesprächsrunde</p>
+          <p class="question-category" id="question-category"></p>
+          <p class="question-text" id="question-text"></p>
+        </article>
+
+        <div class="question-guidance">
+          <p>
+            Hört einander zu, fragt gern nach und sucht nach Gemeinsamkeiten.
+            Jede Person darf eine Antwort auch kurz halten oder passen.
+          </p>
+        </div>
+
+        <section class="timer-panel" aria-labelledby="timer-title">
+          <h2 id="timer-title">Gesprächszeit</h2>
+
+          <div class="timer-setup" id="timer-setup" data-moderator-only>
+            <p>Timer starten:</p>
+            <div class="timer-options" aria-label="Gesprächsdauer wählen">
+              <button class="button timer-choice" type="button" data-minutes="1">1 Minute</button>
+              <button class="button timer-choice" type="button" data-minutes="2">2 Minuten</button>
+              <button class="button timer-choice" type="button" data-minutes="3">3 Minuten</button>
+              <button class="button timer-choice" type="button" data-minutes="5">5 Minuten</button>
+            </div>
+          </div>
+
+          <p class="timer-waiting" id="timer-waiting" hidden>
+            Wartet auf den Start der Gesprächsrunde.
+          </p>
+
+          <div class="timer-running" id="timer-running" hidden>
+            <div class="timer-display" id="timer-display" aria-live="off">03:00</div>
+            <div class="timer-track" role="progressbar" aria-label="Verbleibende Gesprächszeit"
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+              <div class="timer-progress" id="timer-progress"></div>
+            </div>
+            <button class="button secondary timer-stop" id="timer-stop" type="button" data-moderator-only>Timer stoppen</button>
+          </div>
+        </section>
+
+        <section class="rotation-instruction" id="rotation-instruction" hidden aria-live="assertive">
+          <p class="rotation-kicker">Zeit – jetzt wechseln!</p>
+          <h2>Die zweite Gesprächsperson geht einen Channel nach unten.</h2>
+          <p>
+            Wer im untersten Voice-Channel ist, wechselt nach ganz oben.
+            Gruppe 1 bleibt in ihren Channels. Wartet danach auf die nächste Frage im Hauptchannel.
+          </p>
+          <div class="mini-rotation" aria-hidden="true">
+            <span>1 ↓</span><span>2 ↓</span><span>…</span><span>letzte ↟ nach oben</span>
+          </div>
+        </section>
+
+        <p id="question-status" class="status" role="status"></p>
+
+        <div class="actions question-actions" data-moderator-only>
+          <button class="button primary" id="draw-again" type="button">Andere Frage dieser Kategorie</button>
+          <button class="button secondary" id="choose-category" type="button">Andere Kategorie</button>
+          <button class="button secondary" id="copy-link" type="button">Teilnehmer-Link kopieren</button>
+        </div>
+      </section>
+
+      <noscript>
+        <div class="event-info">
+          <p>Für Fragen und gemeinsamen Timer muss JavaScript aktiviert sein.</p>
+        </div>
+      </noscript>
+    </section>
+  </main>
+
+  <footer><span>[OOPS] · We Can't Fly Here</span></footer>
+</body>
+</html>
