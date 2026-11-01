@@ -15,3 +15,5 @@ Einfache statische Landingpage für das Member-Speeddating am 1. August 2026.
 - Production branch: `main`
 
 Jeder Push nach `main` veröffentlicht automatisch eine neue Version.
+
+/builds
