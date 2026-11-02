@@ -103,4 +103,43 @@ const rationale={
 };
 const roles=[P,H,T,D,X], descriptions=['Stabilität & Schutz','Heilung, Barriere & Cleanse','Segen & zusätzliche Unterstützung','Schaden & Segen entfernen','Schaden & Druck'];let active='Alle';const rows=document.querySelector('#rows'),search=document.querySelector('#search');
 function render(){let q=search.value.trim().toLocaleLowerCase('de'),count=0;rows.innerHTML='';roles.forEach((role,i)=>{let list=data.filter(x=>(active==='Alle'||active===role)&&x[0]===role&&x.flat(2).join(' ').toLocaleLowerCase('de').includes(q)).sort((a,b)=>(tierOrder.indexOf(tierFor(a))<0?99:tierOrder.indexOf(tierFor(a)))-(tierOrder.indexOf(tierFor(b))<0?99:tierOrder.indexOf(tierFor(b))));if(!list.length)return;count+=list.length;let group=document.createElement('tr');group.className='group';group.innerHTML=`<th colspan="4"><span class="role-dot role-${i}"></span>${role.toUpperCase()} <small>${descriptions[i]}</small><span class="count">${String(list.length).padStart(2,'0')}</span></th>`;rows.append(group);list.forEach(x=>{let tr=document.createElement('tr');tr.innerHTML=`<th scope="row"><span class="class-icon" data-name="${x[1]}" aria-hidden="true">${x[1].charAt(0)}</span><span class="class-name">${x[1]} <span class="tier">${tierFor(x)==='S'?'A+ (S)':tierFor(x)||'Nicht bewertet'}</span><small>${x[2]}</small>${rationale[x[0]+'|'+x[1]]?`<small class="why">${rationale[x[0]+'|'+x[1]]}</small>`:''}</span></th>`+x.slice(3).map(v=>v?`<td><a class="build" href="${v[1]}" target="_blank" rel="noopener">${v[0]} <span>↗</span></a>${v[1]===G||/^https:\/\/snowcrows\.com\/builds\/wvw\/[^/]+$/.test(v[1])?'<small class="listnote">Build-Liste öffnen</small>':''}</td>`:'<td class="dash">Nicht erfasst</td>').join('');rows.append(tr)});});document.querySelector('#empty').hidden=!!count;showIcons();}
-document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.role;document.querySelectorAll('[data-role]').forEach(x=>x.classList.toggle('selected',x===b));render()}));search.addEventListener('input',render);render();
+function tierLabel(row){const tier=tierFor(row);return tier==='S'?'A+ (S)':tier||'–'}
+function tierRank(row){const i=tierOrder.indexOf(tierFor(row));return i<0?tierOrder.length:i}
+function renderRoleOptions(){
+ const target=document.querySelector('#role-options');if(!target)return;
+ target.innerHTML='';
+ roles.forEach((role,i)=>{
+  const panel=document.createElement('section');panel.className='role-options-panel';
+  const options=data.filter(row=>row[0]===role).sort((a,b)=>tierRank(a)-tierRank(b)||a[1].localeCompare(b[1]));
+  panel.innerHTML=`<h4><span class="role-dot role-${i}"></span>${role}</h4><ul>${options.map(row=>{const content=`<span class="class-icon" data-name="${row[1]}" aria-hidden="true">${row[1].charAt(0)}</span><span class="option-name">${row[1]}<small>${row[2]}</small></span><span class="role-tier">${tierLabel(row)}</span>`;return row[4]?.[1]?`<li><a href="${row[4][1]}" target="_blank" rel="noopener" aria-label="${row[1]}, ${row[2]}, Snow-Crows-Build öffnen">${content}</a></li>`:`<li><span class="builder-build">${content}</span></li>`}).join('')}</ul>`;
+  target.append(panel);
+ });
+}
+// Presets describe role choices only. Names, icons, target links and role tiers
+// are resolved from the same dataset as the build comparison on every load.
+const exampleGroups=[
+ ['Firebrand','Druid','Troubadour','Spellbreaker','Evoker'],
+ ['Luminary','Specter','Paragon','Reaper','Vindicator'],
+ ['Chronomancer','Tempest','Renegade','Spellbreaker','Amalgam'],
+ ['Dragonhunter','Specter','Catalyst','Untamed','Warrior'],
+ ['Firebrand','Scrapper','Paragon','Necromancer','Catalyst'],
+ ['Luminary','Druid','Chronomancer','Necromancer','Warrior'],
+ ['Firebrand','Vindicator','Paragon','Virtuoso','Tempest']
+];
+function renderExampleGroups(){
+ const target=document.querySelector('#example-groups');if(!target)return;
+ target.innerHTML='';
+ exampleGroups.forEach((group,index)=>{
+  const tr=document.createElement('tr');
+  const cells=group.map((spec,i)=>{
+   const row=data.find(item=>item[0]===roles[i]&&item[1]===spec);
+   if(!row)return `<td><span class="dash">${spec}<br><small>Für diese Rolle nicht im Datensatz</small></span></td>`;
+   if(!row[4]?.[1])return `<td><span class="dash">${spec}<br><small>Kein Snow-Crows-Build-Link hinterlegt</small></span></td>`;
+   return `<td><a class="builder-build" href="${row[4][1]}" target="_blank" rel="noopener" aria-label="${row[1]}, ${row[2]}, Snow-Crows-Build öffnen"><span class="class-icon" data-name="${row[1]}" aria-hidden="true">${row[1].charAt(0)}</span><span><strong>${row[1]}</strong><small>${row[2]} ↗</small></span><span class="role-tier example-tier" aria-label="Snow-Crows-Tier für ${roles[i]}: ${tierLabel(row)}">${tierLabel(row)}</span></a></td>`;
+  }).join('');
+  tr.innerHTML=`<th scope="row" class="builder-group">Gruppe ${index+1}<small>5 Rollen</small></th>${cells}`;
+  target.append(tr);
+ });
+}
+document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.role;document.querySelectorAll('[data-role]').forEach(x=>x.classList.toggle('selected',x===b));render()}));search.addEventListener('input',render);renderRoleOptions();renderExampleGroups();render();
+
