@@ -23,31 +23,63 @@ add(T,'Renegade','Revenant',null,['Boon Renegade','revenant/boon-renegade'],null
 add(T,'Spellbreaker','Warrior','Support Spellbreaker',['Support Spellbreaker','warrior/support-spellbreaker'],null);
 add(T,'Conduit','Revenant',null,['Support Conduit','revenant/support-conduit'],null);
 add(T,'Harbinger','Necromancer',null,['Support Harbinger','necromancer/support-harbinger'],'Support Harbinger');
-add(D,'Spellbreaker','Warrior','Spear DPS',['Power Spellbreaker','warrior'], 'Power Spellbreaker');
-add(D,'Untamed','Ranger','DPS Untamed',['Power Untamed','ranger'],'Power Untamed');
-add(D,'Chronomancer','Mesmer','DPS Chrono',['Power Chronomancer','mesmer'],null);
-add(D,'Necromancer','Necromancer','Core Necro',['Power Necromancer','necromancer'],'Power Necro');
+add(D,'Spellbreaker','Warrior','Spear DPS',['Power Spellbreaker','warrior/power-spellbreaker'], 'Power Spellbreaker');
+add(D,'Untamed','Ranger','DPS Untamed',['Power Untamed','ranger/power-untamed'],'Power Untamed');
+add(D,'Chronomancer','Mesmer','DPS Chrono',['Power Chronomancer','mesmer/power-chronomancer'],null);
+add(D,'Necromancer','Necromancer','Core Necro',['Power Necromancer','necromancer/power-necromancer'],'Power Necro');
 add(D,'Reaper','Necromancer','Power Reaper',['Power Reaper','necromancer/power-reaper'],'Power Reaper');
-add(D,'Mirage','Mesmer','DPS Mirage',['Power Mirage','mesmer'],null);
-add(D,'Scourge','Necromancer','Power Scourge',['Power Scourge','necromancer'], 'Power Scourge');
-add(D,'Ritualist','Necromancer','Power Ritualist',['Power Ritualist','necromancer'],'Power Ritualist');
-add(D,'Virtuoso','Mesmer','DPS Virt',['Power Virtuoso','mesmer'],'Power Virtuoso');
+add(D,'Mirage','Mesmer','DPS Mirage',['Power Mirage','mesmer/power-mirage'],null);
+add(D,'Scourge','Necromancer','Power Scourge',['Power Scourge','necromancer/power-scourge'], 'Power Scourge');
+add(D,'Ritualist','Necromancer','Power Ritualist',['Power Ritualist','necromancer/power-ritualist'],'Power Ritualist');
+add(D,'Virtuoso','Mesmer','DPS Virt',['Power Virtuoso','mesmer/power-virtuoso'],'Power Virtuoso');
 add(X,'Evoker','Elementalist','Spear Backline',['Power Evoker','elementalist/power-evoker'],'DPS Evoker');
-add(X,'Vindicator','Revenant','Shiro DPS Vindicator',['Power Vindicator','revenant'],'Power Vindicator');
-add(X,'Catalyst','Elementalist','Spear Backline',['Power Catalyst','elementalist'],'DPS Catalyst');
-add(X,'Dragonhunter','Guardian','Power DH',['Power Dragonhunter','guardian'],'Power Dragonhunter');
-add(X,'Tempest','Elementalist','DPS Tempest',['Power Tempest','elementalist'],null);
-add(X,'Guardian','Guardian','Core Power Guardian',['Power Guardian','guardian'],null);
-add(X,'Warrior','Warrior','Spear DPS',['Power Warrior','warrior'],'DPS Warrior');
-add(X,'Berserker','Warrior','DPS Berserker',['Power Berserker','warrior'],null);
-add(X,'Soulbeast','Ranger','DPS Soulbeast',['Power Soulbeast','ranger'],null);
-add(X,'Amalgam','Engineer','DPS Amalgam',['Power Amalgam','engineer'],'Power Amalgam');
-add(X,'Holosmith','Engineer','DPS Holo',['Power Holosmith','engineer'],'Power Holosmith');
-add(X,'Herald','Revenant','Hammer Herald',['Power Herald','revenant'],null);
-add(X,'Renegade','Revenant',null,['Power Renegade','revenant'],null);
-add(X,'Conduit','Revenant','Shiro Razah Conduit',['Power Conduit','revenant'],null);
-add(X,'Weaver','Elementalist',null,['Power Weaver','elementalist'],null);
-add(X,'Scrapper','Engineer','Power Explosives',['Power Scrapper','engineer'],'Power Scrapper');
+add(X,'Vindicator','Revenant','Shiro DPS Vindicator',['Power Vindicator','revenant/power-vindicator'],'Power Vindicator');
+add(X,'Catalyst','Elementalist','Spear Backline',['Power Catalyst','elementalist/power-catalyst'],'DPS Catalyst');
+add(X,'Dragonhunter','Guardian','Power DH',['Power Dragonhunter','guardian/power-dragonhunter'],'Power Dragonhunter');
+add(X,'Tempest','Elementalist','DPS Tempest',['Power Tempest','elementalist/power-tempest'],null);
+add(X,'Guardian','Guardian','Core Power Guardian',['Power Guardian','guardian/power-guardian'],null);
+add(X,'Warrior','Warrior','Spear DPS',['Power Warrior','warrior/power-warrior'],'DPS Warrior');
+add(X,'Berserker','Warrior','DPS Berserker',['Power Berserker','warrior/power-berserker'],null);
+add(X,'Soulbeast','Ranger','DPS Soulbeast',['Power Soulbeast','ranger/power-soulbeast'],null);
+add(X,'Amalgam','Engineer','DPS Amalgam',['Power Amalgam','engineer/power-amalgam'],'Power Amalgam');
+add(X,'Holosmith','Engineer','DPS Holo',['Power Holosmith','engineer/power-holosmith'],'Power Holosmith');
+add(X,'Herald','Revenant','Hammer Herald',['Power Herald','revenant/power-herald'],null);
+add(X,'Renegade','Revenant',null,['Power Renegade','revenant/power-renegade'],null);
+add(X,'Conduit','Revenant','Shiro Razah Conduit',['Power Conduit','revenant/power-conduit'],null);
+add(X,'Weaver','Elementalist',null,['Power Weaver','elementalist/power-weaver'],null);
+add(X,'Scrapper','Engineer','Power Explosives',['Power Scrapper','engineer/power-scrapper'],'Power Scrapper');
+// Verified direct GW2Mists build pages; other entries retain the overview.
+const mistsDirect={
+ 'Support Firebrand':'guardian/support-firebrand',
+ 'Support Luminary':'guardian/support-luminary',
+ 'Support Chronomancer':'mesmer/support-chronomancer',
+ 'Support Troubadour':'mesmer/support-troubadour',
+ 'Heal Druid':'ranger/heal-druid',
+ 'Support Specter':'thief/support-specter',
+ 'Support Vindicator':'revenant/support-vindicator',
+ 'Support Evoker':'elementalist/support-evoker',
+ 'Cleanse Tempest':'elementalist/cleanse-tempest',
+ 'Heal Scrapper':'engineer/heal-scrapper',
+ 'Support Paragon':'warrior/support-paragon',
+ 'Support Catalyst':'elementalist/support-catalyst',
+ 'Support Harbinger':'necromancer/support-harbinger',
+ 'Power Spellbreaker':'warrior/power-spellbreaker',
+ 'Power Untamed':'ranger/power-untamed',
+ 'Power Necro':'necromancer/power-necro',
+ 'Power Reaper':'necromancer/power-reaper-2',
+ 'Power Scourge':'necromancer/power-scourge',
+ 'Power Ritualist':'necromancer/power-ritualist',
+ 'Power Virtuoso':'mesmer/power-virtuoso',
+ 'DPS Evoker':'elementalist/dps-evoker',
+ 'Power Vindicator':'revenant/power-vindicator',
+ 'DPS Catalyst':'elementalist/dps-catalyst',
+ 'Power Dragonhunter':'guardian/power-dragonhunter',
+ 'DPS Warrior':'warrior/dps-warrior',
+ 'Power Amalgam':'engineer/power-amalgam',
+ 'Power Holosmith':'engineer/power-holosmith',
+ 'Power Scrapper':'engineer/power-scrapper'
+};
+data.forEach(row=>{const build=row[5];if(build && mistsDirect[build[0]])build[1]='https://gw2mists.com/en/builds/'+mistsDirect[build[0]]});
 // MetaBattle names above are taken from its WvW overview; its Guardian core URL uses the base profession.
 data.forEach(row=>{if(row[1]==='Guardian'&&row[3])row[3][1]=M+encodeURIComponent('Guardian - Core Power Guardian')});
 // Snow Crows' role-specific rankings, not the overall tier or the other sources' ratings.
