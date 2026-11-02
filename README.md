@@ -16,4 +16,3 @@ Einfache statische Landingpage für das Member-Speeddating am 1. August 2026.
 
 Jeder Push nach `main` veröffentlicht automatisch eine neue Version.
 
-/builds
