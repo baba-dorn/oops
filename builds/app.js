@@ -137,7 +137,7 @@ function renderExampleGroups(){
    if(!row[4]?.[1])return `<td><span class="dash">${spec}<br><small>Kein Snow-Crows-Build-Link hinterlegt</small></span></td>`;
    return `<td><a class="builder-build" href="${row[4][1]}" target="_blank" rel="noopener" aria-label="${row[1]}, ${row[2]}, Snow-Crows-Build öffnen"><span class="class-icon" data-name="${row[1]}" aria-hidden="true">${row[1].charAt(0)}</span><span><strong>${row[1]}</strong><small>${row[2]} ↗</small></span><span class="role-tier example-tier" aria-label="Snow-Crows-Tier für ${roles[i]}: ${tierLabel(row)}">${tierLabel(row)}</span></a></td>`;
   }).join('');
-  tr.innerHTML=`<th scope="row" class="builder-group">Gruppe ${index+1}<small>5 Rollen</small></th>${cells}`;
+  tr.innerHTML=`<th scope="row" class="builder-group">Gruppe ${index+1}</th>${cells}`;
   target.append(tr);
  });
 }
